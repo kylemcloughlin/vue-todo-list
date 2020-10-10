@@ -1,15 +1,44 @@
 <template>
+<div id="app">
+  <Todos v-bind:todos="todos" @updatecompleted="updatedata"/>
 
-  <HelloWorld msg="Welcome to Yourmum Vue.js App"/>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Todos from './components/Todos';
+console.log('hit');
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Todos
+  },
+  data() {
+    return {
+      todos: [
+        {
+          id:1,
+          title: 'Todo one',
+          completed: false
+        },
+        {
+          id:2,
+          title: 'Todo two',
+          completed: true
+        },
+        {
+          id:3,
+          title: 'Todo three',
+          completed: false
+        },
+      ]
+    }
+  },
+  methods: {
+    updatedata(id) {
+      this.todos[id-1].completed = !this.todos[id-1].completed;
+
+    }
   }
 }
 </script>
